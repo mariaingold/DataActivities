@@ -40,9 +40,9 @@ table(as_factor(crime_survey$bcsvictim))
 # DATA ACTIVITY 3: Subset of 75+ who were bcsvictims
 print(attr(crime_survey$agegrp7, "label")) # Display agegrp7 label
 print(attr(crime_survey$agegrp7, "labels")) # Display agegrp7 labels
-subset_75plusvictims <- crime_survey %>%
+crime_75victim <- crime_survey %>%
   filter(agegrp7 == 7 & bcsvictim == 1)
-print(paste("Victims 75+ : ", nrow(subset_75plusvictims), " out of: ", n_count))
+print(paste("Victims 75+ : ", nrow(crime_75victim), " out of: ", n_count))
 
 # DATA ACTIVITY 4.1: Boxplot for antisocx variable
 ggplot(crime_survey, aes(y = antisocx)) +
@@ -50,3 +50,13 @@ ggplot(crime_survey, aes(y = antisocx)) +
   labs(title = "Levels of anti-social behaviour in neighbourhood 'antisocx'",
        y = "antisocx: higher score is higher level") +
   scale_x_continuous(breaks = NULL) # Remove x-axis labels
+
+# DATA ACTIVITY 4.2: Barplot for bcsvictim variable
+ggplot(crime_survey, aes(x = as_factor(bcsvictim),
+                         fill = as_factor(bcsvictim))) +
+  geom_bar() +
+  scale_fill_manual(values = c("Not a victim of crime" = "green",
+                               "Victim of crime" = "red")) +
+  labs(title = "Victims of crime in 12 months prior to survey 'bcsvictim'",
+       x = "bcsvictim",
+       fill = "bcsvictim")
