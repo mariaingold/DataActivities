@@ -58,5 +58,5 @@ ggplot(crime_survey, aes(x = as_factor(bcsvictim),
   scale_fill_manual(values = c("Not a victim of crime" = "green",
                                "Victim of crime" = "red")) +
   labs(title = "Victims of crime in 12 months prior to survey 'bcsvictim'",
-       x = "bcsvictim",
-       fill = "bcsvictim")
+       x = "bcsvictim") +
+  theme(legend.position = "none")
