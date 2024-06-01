@@ -108,7 +108,7 @@ shapiro.test(vendor1)
 shapiro.test(vendor2)
 shapiro.test(vendor3)
 
-# Observations are indpendent
+# Observations are independent
 # But still don't know if variances are equal
 # So can't yet confirm ANOVA
 # Levene's test for homogeneity of variance
@@ -193,7 +193,10 @@ TukeyHSD(anova_test)
 # But can't statistically say which is better between vendor 1 and vendor 2
 
 # plot confidence intervals
+old_mar <- par("mar") # old margins
+par(mar = c(5, 8, 4, 2) + 0.1) # new: bottom, left, top, right
 plot(TukeyHSD(anova_test, conf.level=.95), las = 2, col = "blue")
+par(mar = old_mar)
 
 # Kruskal-Wallis test
 # Just for fun, let's try a non-parametric test
